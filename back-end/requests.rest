@@ -1,0 +1,9 @@
+PATCH http://localhost:6789/api/user/63d7b7dbeb18b1fcf766f4e4
+Content-Type: application/json
+
+    {
+        "name":"ANDREI"
+    }
+
+###
+DELETE http://localhost:6789/api/user/63d7b7dbeb18b1fcf766f4e4

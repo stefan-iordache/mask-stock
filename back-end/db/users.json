@@ -1,0 +1,10 @@
+[
+    {
+        "name":"Horia Mitrica",
+        "username":"Mitri",
+        "email":"horia_mitrica@yahoo.com",
+        "password":"1234",
+        "admin":true,
+        "hospitals":[]
+    }
+]
