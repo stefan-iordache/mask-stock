@@ -1,21 +1,41 @@
 import { useState } from "react"
-import { Link, Routes, Route } from "react-router-dom"
-import { Login } from "./components/Login.jsx"
+import { Routes, Route, useNavigate } from "react-router-dom"
 import { Register } from "./components/Register.jsx"
 import { Home } from "./components/Home.jsx"
 import { Portal } from "./components/Portal.jsx"
+import { Login2 } from "./components/Login2"
+import axios from 'axios';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false)
+	let navigate = useNavigate();
+	const [data, setData] = useState(null);
+	console.log(data);
 
-  return (
-    <Routes>
-				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
-				{loggedIn ? <Route path="/" element={<Portal />} />
-				: <Route path="/" element={<Home />} />}
+	const handleClick = (username, password) => {
+		axios
+			.post('http://localhost:6789/api/login', {
+				username: username,
+				password: password
+			})
+			.then(response => {
+
+				setData(response.data)
+				if (data !== null)
+				if (data.message === "true")
+					navigate("/portal")
+			})
+			.catch(error => console.error(error));
+
+	}
+	console.log(data);
+	return (
+		<Routes>
+			<Route path="/portal" element={<Portal user={data!==null?data.user[0]:null} />} />
+			<Route path="/login" element={<Login2 handleClick={handleClick} data={data} />} />
+			<Route path="/register" element={<Register />} />
+			<Route path="/" element={<Home />} />:
 		</Routes>
-  );
+	);
 }
 
 export default App;

@@ -4,15 +4,15 @@ export function Register() {
     return (
         <>
             <h2>Registration</h2>
-            <form action="http://localhost:6789/api/hospitals" method="POST">
+            <form action="http://localhost:6789/api/newUser" method="POST">
+                <p>Full name:</p>
+                <input className="full-name" name="name"></input>
                 <p>Username:</p>
-                <input className="user-name" name="userName"></input>
-                <p>Password:</p>
-                <input type="password" className="password" name="password"></input>
+                <input className="user-name" name="username"></input>
                 <p>Email:</p>
                 <input className="email" name="email"></input>
-                <p>Full name:</p>
-                <input className="full-name" name="fullName"></input>
+                <p>Password:</p>
+                <input type="password" className="password" name="password"></input>
                 <button type="submit" onClick={ () => {}}>Submit</button>
             </form>
             <br/>

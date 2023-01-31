@@ -4,10 +4,10 @@ export function Login() {
     return (
         <>
             <h2>Login</h2>
-            <form action="/login" method="POST">
+            <form action="http://localhost:6789/api/login" method="POST">
                 <div>
                 <p>Username:</p>
-                <input className="user-name" name="userName"></input>
+                <input className="user-name" name="username"></input>
                 </div>
                 <p>Password:</p>
                 <input type="password" className="password" name="password"></input>
