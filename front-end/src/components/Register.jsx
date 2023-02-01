@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-
 export function Register() {
     return (
         <>
@@ -13,7 +12,7 @@ export function Register() {
                 <input className="email" name="email"></input>
                 <p>Password:</p>
                 <input type="password" className="password" name="password"></input>
-                <button type="submit" onClick={ () => {}}>Submit</button>
+                <button type="submit">Submit</button>
             </form>
             <br/>
             <Link to="/login">Already have an account? Login</Link>

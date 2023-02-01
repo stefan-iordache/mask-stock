@@ -1,26 +1,25 @@
 import { useEffect } from "react"
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
-export function Portal({user}) {
-    let navigate=useNavigate()
-    useEffect(()=>{
-        if(user===null)
-        navigate("/")
-    },[])
+import { useNavigate, useLocation } from "react-router-dom"
+import ChooseHospital from "./ChooseHospital"
+import hospitals from "../names.json"
+export function Portal({ user }) {
+    console.log(user);
+    let navigate = useNavigate()
+    const location = useLocation()
+    let edit = false;
+    if (location.state.edit !== undefined)
+        edit = location.state.edit
+    useEffect(() => {
+        if (user === null)
+            navigate("/")
+    }, [])
     return (
         <>
             <h2>Hi {user.name}</h2>
+            {user.hospitals.length === 0||edit === true ? hospitals.map(hospital => <ChooseHospital key={user._id} user={user} hospital={hospital} />):null
+        }
+            <button onClick={() => { navigate("/portal/account") }}>Done</button>
             <button className="logout-button" onClick={()=>{navigate("/")}}>Log out</button>
-            <button className="add-hospitals">Add hospitals</button>
-            <ul className="hospital-list">
-                {user.hospitals.length != 0 ? user.hospitals.map((item, index) => (
-                    <div className="hospital">
-                        <li key={index}>{index + 1} {item} <button>Order masks</button></li>
-                    </div>
-                ))
-            :null
-            }
-            </ul>
         </>
     )
 }

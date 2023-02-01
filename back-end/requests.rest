@@ -2,24 +2,11 @@ PATCH http://localhost:6789/api/user/63d8e7612c7ced60c20ba34a
  Content-Type: application/json
 
     {
-        "hospitals":[
-"Pécsi Irgalmasrendi Kórház",
-"Miskolci Semmelweis Ignác Egészségügyi Központ és Egyetemi Oktatókórház",
-"Szent Pantaleon Kórház Kht.",
-"Markhot Ferenc Oktatókórház és Rendelőintézet",
-"Fővárosi Önkormányzat Heim Pál Gyermekkórház",
-"The Helios Hospital Berlin-Buch",
-"The University Hospital Duesseldorf",
-"The University Hospital of Ludwig Maximilian University of Munich",
-"Rigas Austrumu Kliniskas Universitates",
-"Karolinska University Hospital"
-],
-        "name":"Hora Mitrica",
-        "password":"2223211"
+        "password":"1234"
     }
 
 ###
-DELETE http://localhost:6789/api/user/63d8c92e04ce91e95a849c68
+DELETE http://localhost:6789/api/user/63d939be182b7278ea80bbfd
 ###
 POST http://localhost:6789/api/newUser/
  Content-Type: application/json

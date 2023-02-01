@@ -33,18 +33,17 @@ app.post("/api/newUser/", async (req, res, next) => {
   req.body["admin"] = false;
   req.body["hospitals"] = [];
   const addedUser = new userModel(req.body)
-  return addedUser.save().then(value => console.log(`${value.name} saved`))
+  return addedUser.save().then(value => res.redirect('http://localhost:3000/login'))
 });
 
 app.patch("/api/user/:id", getUser, async (req, res, next) => {
-  console.log(res.user);
-  if (req.body.name !== null)
+  if (req.body.name !== undefined)
     res.user.name = req.body.name
-  if (req.body.hospitals !== null)
+  if (req.body.hospitals !== undefined)
     res.user.hospitals = req.body.hospitals
-  if (req.body.password !== null)
+  if (req.body.password !== undefined)
     res.user.password = req.body.password
-  if (req.body.admin !== null)
+  if (req.body.admin !== undefined)
     res.user.admin = req.body.admin
   try {
     const updatedUser = await res.user.save()
