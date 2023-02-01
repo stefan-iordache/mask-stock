@@ -11,3 +11,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.hospital {
+  display: flex;
+  flex-direction: row;
+}
+
+.hospital-list {
+  list-style: none;
+}
+
+.logout-button {
+  border: none;
+  background-color: aquamarine;
+  color: black;
+  border-radius: 7px;
+  margin: 1vw;
+  width: 7vw;
+}
+
+.hospital button {
+  border-radius: 7px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.add-hospitals {
+  background-color: aquamarine;
+  color: black;
+  position: fixed;
+  top: 3vh;
+  right: 1vw;
+  border-radius: 7px;
+  width: 10vw;
+  height: 10vh;
+  font-size: 100%;
+}
