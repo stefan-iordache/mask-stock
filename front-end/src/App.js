@@ -4,6 +4,7 @@ import { Register } from "./components/Register.jsx"
 import { Home } from "./components/Home.jsx"
 import { Portal } from "./components/Portal.jsx"
 import { Login2 } from "./components/Login2"
+import Account from "./components/Account.jsx"
 import axios from 'axios';
 
 function App() {
@@ -21,8 +22,11 @@ function App() {
 
 				setData(response.data)
 				if (data !== null)
-				if (data.message === "true")
-					navigate("/portal")
+					if (data.message === "true")
+						if (data.user[0].hospitals.length > 0)
+							navigate("/portal/account")
+						else
+							navigate("/portal")
 			})
 			.catch(error => console.error(error));
 
@@ -30,10 +34,11 @@ function App() {
 	console.log(data);
 	return (
 		<Routes>
-			<Route path="/portal" element={<Portal user={data!==null?data.user[0]:null} />} />
+			<Route path="/portal" element={<Portal user={data !== null ? data.user[0] : null} />} />
 			<Route path="/login" element={<Login2 handleClick={handleClick} data={data} />} />
 			<Route path="/register" element={<Register />} />
-			<Route path="/" element={<Home />} />:
+			<Route path="/" element={<Home />} />
+			<Route path="/portal/account" element={<Account user={data !== null ? data.user[0] : null} />} />:
 		</Routes>
 	);
 }

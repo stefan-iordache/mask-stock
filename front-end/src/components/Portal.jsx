@@ -1,27 +1,30 @@
 import { useEffect } from "react"
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
-export function Portal({user}) {
-    let navigate=useNavigate()
-    useEffect(()=>{
-        if(user===null)
-        navigate("/")
-    },[])
+import { Link, useResolvedPath } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
+import ChooseHospital from "./ChooseHospital"
+import hospitals from "../names.json"
+export function Portal({ user }) {
+    console.log(user);
+    let navigate = useNavigate()
+    const location = useLocation()
+    let edit = false;
+    if (location.state.edit !== undefined)
+        edit = location.state.edit
+    useEffect(() => {
+        if (user === null)
+            navigate("/")
+    }, [])
 
 
-
+    console.log(user)
     return (
         <>
             <h2>Hi {user.name}</h2>
-            <button onClick={()=>{navigate("/")}}>Log out</button>
-            {user.hospitals.length != 0 ? user.hospitals.map((hospital, index) => {
-                <div className="hospital">
-                    <p>index</p>
-                    <p>{hospital}</p>
-                </div>
-            })
-            : null
+
+            {user.hospitals.length === 0||edit === true ? hospitals.map(hospital => <ChooseHospital key={user._id} user={user} hospital={hospital} />):null
             }
+            <button onClick={() => { navigate("/portal/account") }}>Done</button>
+            <button onClick={() => { navigate("/") }}>Log out</button>
         </>
     )
 }
