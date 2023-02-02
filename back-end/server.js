@@ -5,7 +5,8 @@ const cors = require("cors")
 const mongoose = require("mongoose")
 const hospitalModel = require("./db/model/hospital.model")
 const userModel = require("./db/model/user.model")
-const nodemailer = require("nodemailer")
+const stockModel = require("./db/model/stock.model")
+// const nodemailer = require("nodemailer")
 
 const { MONGO_URL, PORT = 6789 } = process.env
 
@@ -17,29 +18,44 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get("/", (req, res) => {
 	res.send("hello")
 })
-
-app.post("/api/placeOrder", async (req, res) => {
-	
-	let transporter = nodemailer.createTransport({
-		service: "gmail",
-		auth: {
-			user: "horia.mitrica@gmail.com",
-			pass: "1234",
-		},
-	})
-	let details = {
-		from: "horia.mitrica@gmail.com",
-		to: "horia.mitrica@gmail.com",
-    subject:"buy masks will you?",
-    text:"testing"
+app.patch("/api/replenishStock/:id",async(req,res)=>{
+	let item
+	try {
+		item = await stockModel.findById(req.params.id)
+		if (item === null) {
+			return res.status(404).json({ message: "cannot find user" })
+		}
+	} catch (err) {
+		return res.status(500).json({ message: err.message })
 	}
-  transporter.sendMail(details,err=>{
-if(err)
-console.log("error"+err)
-else
-console.log("email sent")
-  })
+
+	res.item = item
+	if (req.body.amount !== undefined) 
+	res.item.amount = req.body.amount
+	const updatedUser = await res.item.save()
 })
+// app.post("/api/placeOrder", async (req, res) => {
+	
+// 	let transporter = nodemailer.createTransport({
+// 		service: "gmail",
+// 		auth: {
+// 			user: "horia.mitrica@gmail.com",
+// 			pass: "1234",
+// 		},
+// 	})
+// 	let details = {
+// 		from: "horia.mitrica@gmail.com",
+// 		to: "horia.mitrica@gmail.com",
+//     subject:"buy masks will you?",
+//     text:"testing"
+// 	}
+//   transporter.sendMail(details,err=>{
+// if(err)
+// console.log("error"+err)
+// else
+// console.log("email sent")
+//   })
+// })
 
 app.post("/api/newUser/", async (req, res, next) => {
 	const findUser = await userModel.find({ username: req.body.username })
@@ -93,10 +109,11 @@ app.post("/api/login/", async (req, res, next) => {
 		return
 	}
 	console.log(findUser)
+	let items=await stockModel.find()
 	let user = []
 	findUser.length != 0 ? (user = [...findUser]) : null
 	req.body.password === user[0].password
-		? res.json({ message: "true", user })
+		? res.json({ message: "true", user,items })
 		: res.json({ message: "Password incorect" })
 })
 

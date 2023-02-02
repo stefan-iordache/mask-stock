@@ -1,5 +1,5 @@
 PATCH http://localhost:6789/api/user/63d8f66f669ca1d8028f0312
- Content-Type: application/json
+Content-Type: application/json
 
     {
         "password":"123"
@@ -9,7 +9,7 @@ PATCH http://localhost:6789/api/user/63d8f66f669ca1d8028f0312
 DELETE http://localhost:6789/api/user/63d939be182b7278ea80bbfd
 ###
 POST http://localhost:6789/api/newUser/
- Content-Type: application/json
+Content-Type: application/json
 
 {"name":"Horia Mitrica",
         "username":"Mitri",
@@ -29,8 +29,11 @@ POST http://localhost:6789/api/newUser/
             "Karolinska University Hospital"
             ]}
 ###
-POST http://localhost:6789/api/placeOrder
+PATCH http://localhost:6789/api/replenishStock/63db6e30f3930d55acf14319
+
 Content-Type: application/json
-{
-    "name":"aa"
-}
+
+    {
+        "amount":1000
+    }
+  

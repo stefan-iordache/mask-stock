@@ -4,8 +4,9 @@ const names = require("./names.json");
 const countries=require("./countries")
 const cities=require("./cities")
 const HospitalModel = require("./model/hospital.model");
-const UsersModel=require("./model/hospital.model");
-const users=require("./users")
+const stokModel=require("./model/stock.model");
+const users=require("./users");
+const stockModel = require("./model/stock.model");
 const mongoUrl = process.env.MONGO_URL;
 
 if (!mongoUrl) {
@@ -23,7 +24,7 @@ const populateHospitals = async () => {
     city:cities[index],
     users:users
   }));
-
+  await stockModel.create({name:"mask",amount:1000});
   await HospitalModel.create(...hospitals);
   console.log("Hospitals created");
 };
