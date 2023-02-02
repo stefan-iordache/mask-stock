@@ -13,31 +13,35 @@ export function Portal({ user }) {
 	}, [])
 	return (
 		<>
-			<h2>Hi {user.name}</h2>
-			{user.hospitals.length === 0 || edit === true
-				? hospitals.map((hospital) => (
-						<ChooseHospital
-							key={user._id}
-							user={user}
-							hospital={hospital}
-						/>
-				  ))
-				: null}
-			<button
-				onClick={() => {
-					navigate("/portal/account")
-				}}
-			>
-				Done
-			</button>
-			<button
-				className="logout-button"
-				onClick={() => {
-					navigate("/")
-				}}
-			>
-				Log out
-			</button>
+			<div className="account spacer waves2">
+				<h2 className="portal-name">Hi {user.name}</h2>
+				<div className="hospital-list">
+					{user.hospitals.length === 0 || edit === true
+						? hospitals.map((hospital) => (
+								<ChooseHospital
+									key={user._id}
+									user={user}
+									hospital={hospital}
+								/>
+						  ))
+						: null}
+				</div>
+				<button
+					onClick={() => {
+						navigate("/portal/account")
+					}}
+				>
+					Done
+				</button>
+				<button
+					className="logout-button"
+					onClick={() => {
+						navigate("/")
+					}}
+				>
+					Log out
+				</button>
+			</div>
 		</>
 	)
 }
