@@ -15,6 +15,17 @@ code {
 .hospital {
   height: 7.5vh;
   display: grid;
+  gap: 10px;
+  margin-top: -5px;
+  grid-template-columns: 18fr 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  padding: 0px;
+}
+
+.hospital-edit {
+  height: 7.5vh;
+  display: grid;
   grid-template-columns: 10fr 1fr 1fr;
   justify-content: center;
   align-content: center;
@@ -52,6 +63,8 @@ code {
 }
 
 .hospital-name {
+  margin-top: 0px;
+  font-size:x-large;
   display: flex;
   align-items: center;
 }
@@ -178,8 +191,10 @@ code {
 }
 
 .user-title {
+  text-align: right;
   color: #575ff8e8;
   height: 100%;
+
   padding-left: 3vw;
 }
 
@@ -192,7 +207,11 @@ code {
   margin-top: 0px;
   margin-left: 5vw;
 }
-
+@media screen and (min-width: 400) {
+  .choose-hospital{
+    height:200vh;
+  }
+}
 .choose-hospital {
   width: 100vw;
   height: 100vh;
