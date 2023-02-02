@@ -1,8 +1,8 @@
-PATCH http://localhost:6789/api/user/63d8e7612c7ced60c20ba34a
+PATCH http://localhost:6789/api/user/63d8f66f669ca1d8028f0312
  Content-Type: application/json
 
     {
-        "password":"1234"
+        "password":"123"
     }
 
 ###
@@ -28,3 +28,9 @@ POST http://localhost:6789/api/newUser/
             "Rigas Austrumu Kliniskas Universitates",
             "Karolinska University Hospital"
             ]}
+###
+POST http://localhost:6789/api/placeOrder
+Content-Type: application/json
+{
+    "name":"aa"
+}

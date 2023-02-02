@@ -10,7 +10,6 @@ import axios from 'axios';
 function App() {
 	let navigate = useNavigate();
 	const [data, setData] = useState(null);
-	console.log(data);
 
 	const handleClick = (username, password) => {
 		axios
@@ -31,14 +30,13 @@ function App() {
 			.catch(error => console.error(error));
 
 	}
-	console.log(data);
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
-			<Route path="/portal" element={<Portal user={data !== null ? data.user[0] : null} />} />
+			<Route path="/portal" element={<Portal user={data!==null&&data.user[0]!==undefined?data.user[0]:null} />} />
 			<Route path="/login" element={<Login2 handleClick={handleClick} data={data} />} />
 			<Route path="/register" element={<Register />} />
-			<Route path="/portal/account" element={<Account user={data !== null ? data.user[0] : null} />} />:
+			<Route path="/portal/account" element={<Account user={data!==null&&data.user[0]!==undefined?data.user[0]:null} />} />
 		</Routes>
 	);
 }
