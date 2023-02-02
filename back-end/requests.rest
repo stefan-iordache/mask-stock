@@ -29,7 +29,7 @@ Content-Type: application/json
             "Karolinska University Hospital"
             ]}
 ###
-PATCH http://localhost:6789/api/replenishStock/63db6e30f3930d55acf14319
+PATCH http://localhost:6789/api/replenishStock/63db88887b4f95fa0df91967
 
 Content-Type: application/json
 

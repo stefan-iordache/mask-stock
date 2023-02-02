@@ -34,7 +34,7 @@ function App() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
-			<Route path="/portal" element={<Portal user={data!==null&&data.user[0]!==undefined?data.user[0]:null} />} />
+			<Route path="/portal" element={<Portal user={data!==null&&data?.user[0]!==undefined?data?.user[0]:null} />} />
 			<Route path="/login" element={<Login2 handleClick={handleClick} data={data} />} />
 			<Route path="/register" element={<Register />} />
 			<Route path="/PDFviewer" element={<PDFviewer />} />
