@@ -12,36 +12,34 @@ function App() {
 	let navigate = useNavigate();
 	const [data, setData] = useState(null);
 	console.log(data)
-	const handleClick = async (username, password) => {
-		try {
-		  const response = await axios.post('http://localhost:6789/api/login', {
-			username: username,
-			password: password
-		  });
-		  const { data } = response;
-	  
-		  setData(data);
-		  if (data !== null && data.message === "true") {
-			const user = data.user[0];
-			if (user.hospitals.length > 0) {
-			  navigate("/portal/account");
-			} else {
-			  navigate("/portal");
-			}
-		  }
-		} catch (error) {
-		  console.error(error);
-		}
-	  };
+	const handleClick = (username, password) => {
+		axios
+			.post('http://localhost:6789/api/login', {
+				username: username,
+				password: password
+			})
+			.then(response => {
+
+				setData(response.data)
+				if (data !== null)
+					if (data.message === "true")
+						if (data.user[0].hospitals.length > 0)
+							navigate("/portal/account")
+						else
+							navigate("/portal")
+			})
+			.catch(error => console.error(error));
+
+	}
 	console.log(data);
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
+			<Route path="/portal" element={<Portal user={data!==null&&data?.user[0]!==undefined?data?.user[0]:null} />} />
 			<Route path="/login" element={<Login2 handleClick={handleClick} data={data} />} />
 			<Route path="/register" element={<Register />} />
 			<Route path="/PDFviewer" element={<PDFviewer />} />
-			<Route path="/portal" element={<Portal user={data?.user?.[0] || null} />} />
-			<Route path="/portal/account" element={<Account items={data?.items || null} user={data?.user?.[0] || null} />} />
+			<Route path="/portal/account" element={<Account  items={data!==null&&data.items!==undefined?data.items:null} user={data!==null&&data.user[0]!==undefined?data.user[0]:null} />} />
 		</Routes>
 	);
 }
