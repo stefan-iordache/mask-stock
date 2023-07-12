@@ -26,7 +26,7 @@ export default function ChooseHospital({ user, hospital }) {
 		<>
 			<div className="hospital">
 			<h3 className="hospital-name">{hospital}</h3>
-				<button
+				<button className="hospital-button"
 					disabled={
 						user.hospitals.find(
 							(userHospital) => userHospital === hospital
@@ -39,7 +39,7 @@ export default function ChooseHospital({ user, hospital }) {
 					-
 				</button>
 				
-				<button
+				<button className="hospital-button"
 					disabled={
 						user.hospitals.find(
 							(userHospital) => userHospital === hospital

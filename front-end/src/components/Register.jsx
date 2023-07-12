@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom"
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 export function Register() {
 	return (
 		<>
@@ -10,19 +12,21 @@ export function Register() {
 						method="POST"
 					>
 						<p>Full name:</p>
-						<input className="full-name" name="name"></input>
+						<input className="full-name" name="name" required></input>
 						<p>Username:</p>
-						<input className="user-name" name="username"></input>
+						<input className="user-name" name="username" required></input>
 						<p>Email:</p>
-						<input className="email" name="email"></input>
+						<input className="email" name="email" type="email" required></input>
 						<p>Password:</p>
 						<input
 							type="password"
 							className="password"
 							name="password"
+							required
+							minLength="6"
 						></input>
-                        <br/>
-                        <br/>
+						<br/>
+						<br/>
 						<button type="submit">Submit</button>
 					</form>
 					<br />

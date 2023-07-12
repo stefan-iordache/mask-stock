@@ -32,14 +32,14 @@ export default function HospitalOrder({ hospital, user, item, placeOrder }) {
 				},
 				images: {
 					// The logo on top of your invoice
-					logo: "https://www.airit.co.uk/wp-content/uploads/2019/11/DW-ID-400.png",
+					logo: "",
 					// The invoice background
 					background:
 						"https://public.easyinvoice.cloud/img/watermark-draft.jpg",
 				},
 				// Your own data
 				sender: {
-					company: "Dark Web Mask Stock",
+					company: "Mask Stock",
 					address: "Secret Underground facility number 747",
 					zip: "1221",
 					city: "Citadel of Ricks",
@@ -79,7 +79,7 @@ export default function HospitalOrder({ hospital, user, item, placeOrder }) {
 				],
 				// The message you would like to display on the bottom of your invoice
 				"bottom-notice":
-					"Kindly pay your invoice within 15 days otherwise our people will find you.",
+					"Kindly pay your invoice within 15 days.",
 				// Settings to customize your invoice
 				settings: {
 					currency: "EUR", // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
